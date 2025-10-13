@@ -12,4 +12,7 @@ private:
 public:
   Polar(float modulus, float argument);
   Polar(const Complex complex);
+
+  float getModulus() const;
+  Radian getArgument() const;
 };
