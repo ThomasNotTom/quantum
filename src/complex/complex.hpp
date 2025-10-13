@@ -21,6 +21,9 @@ public:
   Complex conjugate() const;
   void conjugateInplace();
 
+  float modulusSquared() const;
+  float modulus() const;
+
   Complex operator+(const Complex& other) const;
   void operator+=(const Complex& other);
 
