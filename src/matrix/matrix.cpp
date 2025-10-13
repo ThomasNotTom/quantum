@@ -65,3 +65,19 @@ bool Matrix::operator==(const Matrix& other) const {
 
   return true;
 }
+
+bool Matrix::operator!=(const Matrix& other) const {
+  unsigned int width, height;
+  height = this->values.size();
+  width = this->values[0].size();
+
+  for (unsigned int y = 0; y < height; y++) {
+    for (unsigned int x = 0; x < width; x++) {
+      if (this->get(x, y) != other.get(x, y)) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
