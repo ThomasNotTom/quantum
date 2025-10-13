@@ -34,3 +34,37 @@ TEST_CASE("Matrix set", "[matrix]") {
   Complex value = m.get(0, 0);
   REQUIRE(value == def);
 };
+
+// Transpose
+
+TEST_CASE("Matrix transpose", "[matrix]") {
+  const Matrix m = Matrix({
+      {Complex(0.0f, 0.0f), Complex(1.0f, 1.0f)},
+      {Complex(2.0f, 2.0f), Complex(3.0f, 3.0f)}
+  });
+
+  const Matrix FINAL = Matrix({
+      {Complex(0.0f, 0.0f), Complex(2.0f, 2.0f)},
+      {Complex(1.0f, 1.0f), Complex(3.0f, 3.0f)}
+  });
+
+  Matrix mt = m.transpose();
+
+  REQUIRE(mt == FINAL);
+};
+
+TEST_CASE("Matrix transpose inplace", "[matrix]") {
+  Matrix m = Matrix({
+      {Complex(0.0f, 0.0f), Complex(1.0f, 1.0f)},
+      {Complex(2.0f, 2.0f), Complex(3.0f, 3.0f)}
+  });
+
+  const Matrix FINAL = Matrix({
+      {Complex(0.0f, 0.0f), Complex(2.0f, 2.0f)},
+      {Complex(1.0f, 1.0f), Complex(3.0f, 3.0f)}
+  });
+
+  m.transposeInplace();
+
+  REQUIRE(m == FINAL);
+};
