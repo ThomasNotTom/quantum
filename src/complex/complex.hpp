@@ -15,4 +15,7 @@ public:
 
   float addReal(float real);
   float addImaginary(float imaginary);
+
+  Complex operator+(const Complex& other) const;
+  void operator+=(const Complex& other);
 };
