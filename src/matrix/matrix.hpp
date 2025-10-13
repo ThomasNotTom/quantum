@@ -24,4 +24,5 @@ public:
   void hermitianInplace();
 
   bool operator==(const Matrix& other) const;
+  bool operator!=(const Matrix& other) const;
 };
