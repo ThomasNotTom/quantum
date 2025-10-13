@@ -28,6 +28,9 @@ public:
   Matrix operator+(const Matrix& other) const;
   void operator+=(const Matrix& other);
 
+  Matrix operator-(const Matrix& other) const;
+  void operator-=(const Matrix& other);
+
   bool operator==(const Matrix& other) const;
   bool operator!=(const Matrix& other) const;
 };
