@@ -8,5 +8,7 @@ private:
 
 public:
   Matrix(unsigned int width, unsigned int height);
-  Matrix(unsigned int width, unsigned int height, const Complex& initialValue);
+  Matrix(unsigned int width, unsigned int height, const Complex initialValue);
+
+  Complex get(unsigned int x, unsigned int y) const;
 };
