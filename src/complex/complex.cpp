@@ -60,3 +60,14 @@ void Complex::operator/=(float k) {
   this->real /= k;
   this->imaginary /= k;
 }
+
+Complex Complex::operator/(const Complex& other) const {
+  const float divisor =
+      (other.real * other.real) + (other.imaginary * other.imaginary);
+
+  return Complex(
+      ((this->real * other.real) + (this->imaginary * other.imaginary)) /
+          divisor,
+      ((this->imaginary * other.real) - (this->real * other.imaginary)) /
+          divisor);
+};
