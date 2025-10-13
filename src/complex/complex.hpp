@@ -53,4 +53,5 @@ public:
   void operator/=(float k);
 
   bool operator==(const Complex& other) const;
+  bool operator!=(const Complex& other) const;
 };
