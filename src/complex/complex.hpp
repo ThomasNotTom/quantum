@@ -18,4 +18,7 @@ public:
 
   Complex operator+(const Complex& other) const;
   void operator+=(const Complex& other);
+
+  Complex operator-(const Complex& other) const;
+  void operator-=(const Complex& other);
 };
