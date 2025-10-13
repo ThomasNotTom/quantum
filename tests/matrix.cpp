@@ -35,6 +35,40 @@ TEST_CASE("Matrix set", "[matrix]") {
   REQUIRE(value == def);
 };
 
+// Conjugate
+
+TEST_CASE("Matrix conjugate", "[matrix]") {
+  const Matrix m = Matrix({
+      {Complex(0.0f, 0.0f), Complex(1.0f, 1.0f)},
+      {Complex(2.0f, 2.0f), Complex(3.0f, 3.0f)}
+  });
+
+  const Matrix FINAL = Matrix({
+      {Complex(0.0f, 0.0f),  Complex(1.0f, -1.0f)},
+      {Complex(2.0f, -2.0f), Complex(3.0f, -3.0f)}
+  });
+
+  Matrix mt = m.conjugate();
+
+  REQUIRE(mt == FINAL);
+};
+
+TEST_CASE("Matrix conjugate inplace", "[matrix]") {
+  Matrix m = Matrix({
+      {Complex(0.0f, 0.0f), Complex(1.0f, 1.0f)},
+      {Complex(2.0f, 2.0f), Complex(3.0f, 3.0f)}
+  });
+
+  const Matrix FINAL = Matrix({
+      {Complex(0.0f, 0.0f),  Complex(1.0f, -1.0f)},
+      {Complex(2.0f, -2.0f), Complex(3.0f, -3.0f)}
+  });
+
+  m.conjugateInplace();
+
+  REQUIRE(m == FINAL);
+};
+
 // Transpose
 
 TEST_CASE("Matrix transpose", "[matrix]") {
