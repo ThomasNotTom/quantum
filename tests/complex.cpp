@@ -56,6 +56,6 @@ TEST_CASE("Complex adder", "[complex]") {
   REQUIRE(real == FINAL_A);
 
   c.addImaginary(DELTA_B);
-  float real = c.getReal();
-  REQUIRE(real == FINAL_B);
+  float imaginary = c.getImaginary();
+  REQUIRE(imaginary == FINAL_B);
 }
