@@ -82,6 +82,38 @@ void Matrix::transposeInplace() {
   }
 }
 
+Matrix Matrix::hermitian() const {
+  unsigned int width, height;
+  height = this->values.size();
+  width = this->values[0].size();
+
+  Matrix out = Matrix(width, height, Complex(0.0f, 0.0f));
+
+  for (unsigned int y = 0; y < height; y++) {
+    for (unsigned int x = 0; x < width; x++) {
+      out.set(x, y, this->get(y, x).conjugate());
+    }
+  }
+
+  return out;
+};
+
+void Matrix::hermitianInplace() {
+  Matrix thisTemp = *this;
+
+  unsigned int width, height;
+  height = thisTemp.values.size();
+  width = thisTemp.values[0].size();
+
+  Matrix out = Matrix(width, height, Complex(0.0f, 0.0f));
+
+  for (unsigned int y = 0; y < height; y++) {
+    for (unsigned int x = 0; x < width; x++) {
+      this->set(x, y, thisTemp.get(y, x).conjugate());
+    }
+  }
+};
+
 bool Matrix::operator==(const Matrix& other) const {
   unsigned int width, height;
   height = this->values.size();
