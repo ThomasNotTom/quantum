@@ -17,6 +17,19 @@ TEST_CASE("Complex get with no arguments to constructor", "[complex]") {
   REQUIRE(imaginary == 0.0f);
 };
 
+TEST_CASE("Complex get with real argument to constructor", "[complex]") {
+  const float REAL_A = 2.0f;
+
+  const float IMAGINARY_FINAL = 0.0f;
+
+  Complex c = Complex(REAL_A);
+  float real, imaginary;
+  real = c.getReal();
+  REQUIRE(real == REAL_A);
+  imaginary = c.getImaginary();
+  REQUIRE(imaginary == IMAGINARY_FINAL);
+};
+
 TEST_CASE("Complex get with arguments to constructor", "[complex]") {
   const float A = 2.0f;
   const float B = 3.0f;
