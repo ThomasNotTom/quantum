@@ -22,6 +22,12 @@ void Complex::operator+=(const Complex& other) {
   this->imaginary += other.imaginary;
 };
 
+Complex Complex::operator+(float k) const {
+  return Complex(this->real + k, this->imaginary);
+};
+
+void Complex::operator+=(float k) { this->real += k; };
+
 Complex Complex::operator-(const Complex& other) const {
   return Complex(this->real - other.real, this->imaginary - other.imaginary);
 };
