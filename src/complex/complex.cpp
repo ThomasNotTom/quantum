@@ -125,3 +125,7 @@ void Complex::operator/=(const Complex& other) {
       ((thisTemp.imaginary * other.real) - (thisTemp.real * other.imaginary)) /
       divisor;
 };
+
+bool Complex::operator==(const Complex& other) const {
+  return this->real == other.real && this->imaginary == other.imaginary;
+}
