@@ -1,5 +1,7 @@
 #include "./complex.hpp"
 
+#include <cmath>
+
 Complex::Complex(float real, float imaginary)
     : real(real), imaginary(imaginary) {};
 Complex::Complex() : real(0.0f), imaginary(0.0f) {};
@@ -18,6 +20,14 @@ Complex Complex::conjugate() const {
 }
 
 void Complex::conjugateInplace() { this->imaginary *= -1; }
+
+float Complex::modulusSquared() const {
+  return (this->real * this->real) + (this->imaginary * this->imaginary);
+};
+
+float Complex::modulus() const {
+  return sqrtf((this->real * this->real) + (this->imaginary * this->imaginary));
+};
 
 Complex Complex::operator+(const Complex& other) const {
   return Complex(this->real + other.real, this->imaginary + other.imaginary);
