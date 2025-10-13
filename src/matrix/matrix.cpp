@@ -7,6 +7,9 @@ Matrix::Matrix(unsigned int width, unsigned int height,
                const Complex initialValue)
     : values(height, std::vector<Complex>(width, initialValue)) {};
 
+Matrix::Matrix(const std::vector<std::vector<Complex>>& values)
+    : values(values) {};
+
 Complex Matrix::get(unsigned int x, unsigned int y) const {
   return this->values[y][x];
 }
