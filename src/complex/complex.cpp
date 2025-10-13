@@ -21,3 +21,7 @@ void Complex::operator+=(const Complex& other) {
   this->real += other.real;
   this->imaginary += other.imaginary;
 };
+
+Complex Complex::operator-(const Complex& other) const {
+  return Complex(this->real - other.real, this->imaginary - other.imaginary);
+}
