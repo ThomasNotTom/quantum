@@ -97,6 +97,34 @@ TEST_CASE("Complex conjugation inplace", "[complex]") {
   REQUIRE(imaginary == IMAGINARY_FINAL);
 };
 
+// Modulus operations
+
+TEST_CASE("Complex modulus squared", "[complex]") {
+  const float REAL_A = 2.0f;
+  const float IMAGINARY_A = 3.0f;
+
+  const float FINAL = (REAL_A * REAL_A) + (IMAGINARY_A * IMAGINARY_A);
+
+  const Complex c = Complex(REAL_A, IMAGINARY_A);
+
+  float modSquared = c.modulusSquared();
+
+  REQUIRE(modSquared == FINAL);
+};
+
+TEST_CASE("Complex modulus", "[complex]") {
+  const float REAL_A = 3.0f;
+  const float IMAGINARY_A = 4.0f;
+
+  const float FINAL = sqrtf((REAL_A * REAL_A) + (IMAGINARY_A * IMAGINARY_A));
+
+  const Complex c = Complex(REAL_A, IMAGINARY_A);
+
+  float modSquared = c.modulus();
+
+  REQUIRE(modSquared == FINAL);
+};
+
 // Addition operators
 
 TEST_CASE("Complex-complex add operator", "[complex]") {
