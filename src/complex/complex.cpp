@@ -13,6 +13,12 @@ void Complex::setImaginary(float imaginary) { this->imaginary = imaginary; };
 void Complex::addReal(float real) { this->real += real; };
 void Complex::addImaginary(float imaginary) { this->imaginary += imaginary; };
 
+Complex Complex::conjugate() const {
+  return Complex(this->real, this->imaginary * -1);
+}
+
+void Complex::conjugateInplace() { this->imaginary *= -1; }
+
 Complex Complex::operator+(const Complex& other) const {
   return Complex(this->real + other.real, this->imaginary + other.imaginary);
 };
