@@ -12,4 +12,5 @@ public:
   Matrix(const std::vector<std::vector<Complex>>& values);
 
   Complex get(unsigned int x, unsigned int y) const;
+  void set(unsigned int x, unsigned int y, const Complex value);
 };
