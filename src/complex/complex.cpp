@@ -39,3 +39,7 @@ void Complex::operator*=(float k) {
   this->real *= k;
   this->imaginary *= k;
 }
+
+Complex Complex::operator/(float k) const {
+  return Complex(this->real / k, this->imaginary / k);
+}
