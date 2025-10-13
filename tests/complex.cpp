@@ -6,6 +6,8 @@
 
 // Getters, setters and adders
 
+const float ERROR_THRESHOLD = 0.001;
+
 TEST_CASE("Complex get with no arguments to constructor", "[complex]") {
   Complex c;
   float real, imaginary;
@@ -124,6 +126,28 @@ TEST_CASE("Complex modulus", "[complex]") {
 
   REQUIRE(modSquared == FINAL);
 };
+
+// Normalize operations
+
+TEST_CASE("Complex normalization", "[complex]") {
+  const float REAL_A = 2.0f;
+  const float IMAGINARY_A = 3.0f;
+
+  const Complex c = Complex(REAL_A, IMAGINARY_A);
+  const Complex c_norm = c.normalize();
+
+  REQUIRE(abs(1 - c_norm.modulus()) < ERROR_THRESHOLD);
+}
+
+TEST_CASE("Complex normalization inplace", "[complex]") {
+  const float REAL_A = 2.0f;
+  const float IMAGINARY_A = 3.0f;
+
+  Complex c = Complex(REAL_A, IMAGINARY_A);
+  c.normalizeInplace();
+
+  REQUIRE(abs(1 - c.modulus()) < ERROR_THRESHOLD);
+}
 
 // Addition operators
 
