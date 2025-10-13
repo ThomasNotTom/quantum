@@ -15,8 +15,8 @@ public:
   void setReal(float real);
   void setImaginary(float imaginary);
 
-  float addReal(float real);
-  float addImaginary(float imaginary);
+  void addReal(float real);
+  void addImaginary(float imaginary);
 
   Complex operator+(const Complex& other) const;
   void operator+=(const Complex& other);
