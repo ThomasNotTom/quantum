@@ -25,7 +25,7 @@ public:
   float modulus() const;
 
   Complex normalize() const;
-  Complex normalizeInplace() const;
+  void normalizeInplace();
 
   Complex operator+(const Complex& other) const;
   void operator+=(const Complex& other);
