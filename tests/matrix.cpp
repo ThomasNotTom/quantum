@@ -137,6 +137,50 @@ TEST_CASE("Matrix Hermitian conjugation inplace", "[matrix]") {
   REQUIRE(m == FINAL);
 };
 
+// Multiply operations
+
+TEST_CASE("Matrix multiplication", "[matrix]") {
+  const Matrix m_a = Matrix({
+      {Complex(1.0f, 2.0f), Complex(2.0f, 3.0f)},
+      {Complex(3.0f, 1.0f), Complex(0.0f, 1.0f)}
+  });
+
+  const Matrix m_b = Matrix({
+      {Complex(3.0f, 1.0f), Complex(1.0f, 2.0f)},
+      {Complex(0.0f, 1.0f), Complex(2.0f, 3.0f)}
+  });
+
+  const Matrix FINAL = Matrix({
+      {Complex(-2.0f, 9.0f), Complex(-8.0f, 16.0f)},
+      {Complex(7.0f,  6.0f), Complex(-2.0f, 9.0f) }
+  });
+
+  const Matrix m = m_a.multiply(m_b);
+
+  REQUIRE(m == FINAL);
+}
+
+TEST_CASE("Matrix multiplication inplace", "[matrix]") {
+  Matrix m_a = Matrix({
+      {Complex(1.0f, 2.0f), Complex(2.0f, 3.0f)},
+      {Complex(3.0f, 1.0f), Complex(0.0f, 1.0f)}
+  });
+
+  const Matrix m_b = Matrix({
+      {Complex(3.0f, 1.0f), Complex(1.0f, 2.0f)},
+      {Complex(0.0f, 1.0f), Complex(2.0f, 3.0f)}
+  });
+
+  const Matrix FINAL = Matrix({
+      {Complex(-2.0f, 9.0f), Complex(-8.0f, 16.0f)},
+      {Complex(7.0f,  6.0f), Complex(-2.0f, 9.0f) }
+  });
+
+  m_a.multiplyInplace(m_b);
+
+  REQUIRE(m_a == FINAL);
+}
+
 // Addition operations
 
 TEST_CASE("Matrix add", "[matrix]") {
