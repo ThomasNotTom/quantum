@@ -59,3 +59,25 @@ TEST_CASE("Complex adder", "[complex]") {
   float imaginary = c.getImaginary();
   REQUIRE(imaginary == FINAL_B);
 }
+
+TEST_CASE("Complex add operator", "[complex]") {
+  const float REAL_A = 2.0f;
+  const float IMAGINARY_A = 3.0f;
+
+  const float REAL_B = 5.0f;
+  const float IMAGINARY_B = 7.0f;
+
+  const float REAL_FINAL = REAL_A + REAL_B;
+  const float IMAGINARY_FINAL = IMAGINARY_A + IMAGINARY_B;
+
+  const Complex c_a = Complex(REAL_A, IMAGINARY_A);
+  const Complex c_b = Complex(REAL_B, IMAGINARY_B);
+
+  const Complex c_final = c_a + c_b;
+
+  float real = c_final.getReal();
+  REQUIRE(real == REAL_FINAL);
+
+  float imaginary = c_final.getImaginary();
+  REQUIRE(imaginary == IMAGINARY_FINAL);
+}
