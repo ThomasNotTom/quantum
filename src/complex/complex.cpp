@@ -15,7 +15,7 @@ void Complex::addImaginary(float imaginary) { this->imaginary += imaginary; };
 
 Complex Complex::operator+(const Complex& other) const {
   return Complex(this->real + other.real, this->imaginary + other.imaginary);
-}
+};
 
 void Complex::operator+=(const Complex& other) {
   this->real += other.real;
@@ -24,7 +24,7 @@ void Complex::operator+=(const Complex& other) {
 
 Complex Complex::operator-(const Complex& other) const {
   return Complex(this->real - other.real, this->imaginary - other.imaginary);
-}
+};
 
 void Complex::operator-=(const Complex& other) {
   this->real -= other.real;
@@ -33,18 +33,18 @@ void Complex::operator-=(const Complex& other) {
 
 Complex Complex::operator*(float k) const {
   return Complex(this->real * k, this->imaginary * k);
-}
+};
 
 void Complex::operator*=(float k) {
   this->real *= k;
   this->imaginary *= k;
-}
+};
 
 Complex Complex::operator*(const Complex& other) const {
   return Complex(
       (this->real * other.real) - (this->imaginary * other.imaginary),
       (this->real * other.imaginary) + (this->imaginary * other.real));
-}
+};
 
 void Complex::operator*=(const Complex& other) {
   const Complex thisTemp = *this;
@@ -53,16 +53,16 @@ void Complex::operator*=(const Complex& other) {
       (thisTemp.real * other.real) - (thisTemp.imaginary * other.imaginary);
   this->imaginary =
       (thisTemp.real * other.imaginary) + (thisTemp.imaginary * other.real);
-}
+};
 
 Complex Complex::operator/(float k) const {
   return Complex(this->real / k, this->imaginary / k);
-}
+};
 
 void Complex::operator/=(float k) {
   this->real /= k;
   this->imaginary /= k;
-}
+};
 
 Complex Complex::operator/(const Complex& other) const {
   const float divisor =
