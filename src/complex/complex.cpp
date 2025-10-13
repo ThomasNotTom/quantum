@@ -29,6 +29,14 @@ float Complex::modulus() const {
   return sqrtf((this->real * this->real) + (this->imaginary * this->imaginary));
 };
 
+Complex Complex::normalize() const { return *this / this->modulus(); };
+void Complex::normalizeInplace() {
+  const Complex thisTemp = *this;
+  const float mod = this->modulus();
+  this->real /= mod;
+  this->imaginary /= mod;
+};
+
 Complex Complex::operator+(const Complex& other) const {
   return Complex(this->real + other.real, this->imaginary + other.imaginary);
 };
