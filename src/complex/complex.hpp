@@ -18,6 +18,9 @@ public:
   void addReal(float real);
   void addImaginary(float imaginary);
 
+  Complex conjugate() const;
+  void conjugateInplace();
+
   Complex operator+(const Complex& other) const;
   void operator+=(const Complex& other);
 
