@@ -24,15 +24,15 @@ public:
   Complex operator-(const Complex& other) const;
   void operator-=(const Complex& other);
 
-  Complex operator*(float k) const;
-  void operator*=(float k);
-
   Complex operator*(const Complex& other) const;
   void operator*=(const Complex& other);
 
-  Complex operator/(float k) const;
-  void operator/=(float k);
+  Complex operator*(float k) const;
+  void operator*=(float k);
 
   Complex operator/(const Complex& other) const;
   void operator/=(const Complex& other);
+
+  Complex operator/(float k) const;
+  void operator/=(float k);
 };
