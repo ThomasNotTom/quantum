@@ -24,4 +24,7 @@ public:
 
   Complex operator*(float k) const;
   void operator*=(float k);
+
+  Complex operator-(float k) const;
+  void operator-=(float k);
 };
