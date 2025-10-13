@@ -129,3 +129,7 @@ void Complex::operator/=(const Complex& other) {
 bool Complex::operator==(const Complex& other) const {
   return this->real == other.real && this->imaginary == other.imaginary;
 }
+
+bool Complex::operator!=(const Complex& other) const {
+  return this->real != other.real || this->imaginary != other.imaginary;
+}
