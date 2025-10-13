@@ -148,7 +148,7 @@ TEST_CASE("Complex subtract-equals operator", "[complex]") {
   REQUIRE(imaginary == IMAGINARY_FINAL);
 }
 
-TEST_CASE("Complex multiplication operator", "[complex]") {
+TEST_CASE("Complex constant multiplication operator", "[complex]") {
   const float REAL_A = 2.0f;
   const float IMAGINARY_A = 3.0f;
 
@@ -166,7 +166,7 @@ TEST_CASE("Complex multiplication operator", "[complex]") {
   REQUIRE(imaginary == IMAGINARY_FINAL);
 }
 
-TEST_CASE("Complex multiplication-equals operator", "[complex]") {
+TEST_CASE("Complex constant multiplication-equals operator", "[complex]") {
   const float REAL_A = 2.0f;
   const float IMAGINARY_A = 3.0f;
 
@@ -185,7 +185,47 @@ TEST_CASE("Complex multiplication-equals operator", "[complex]") {
   REQUIRE(imaginary == IMAGINARY_FINAL);
 }
 
-TEST_CASE("Complex division operator", "[complex]") {
+TEST_CASE("Complex-complex multiplication operator", "[complex]") {
+  const float REAL_A = 2.0f;
+  const float IMAGINARY_A = 3.0f;
+
+  const float REAL_B = 5.0f;
+  const float IMAGINARY_B = 7.0f;
+
+  const float REAL_FINAL = (REAL_A * REAL_B) - (IMAGINARY_A * IMAGINARY_B);
+  const float IMAGINARY_FINAL = (REAL_A * IMAGINARY_B) + (IMAGINARY_A * REAL_B);
+
+  const Complex c = Complex(REAL_A, IMAGINARY_A) * Complex(REAL_B, IMAGINARY_B);
+
+  float real = c.getReal();
+  REQUIRE(real == REAL_FINAL);
+
+  float imaginary = c.getImaginary();
+  REQUIRE(imaginary == IMAGINARY_FINAL);
+}
+
+TEST_CASE("Complex-complex multiplication-equals operator", "[complex]") {
+  const float REAL_A = 2.0f;
+  const float IMAGINARY_A = 3.0f;
+
+  const float REAL_B = 5.0f;
+  const float IMAGINARY_B = 7.0f;
+
+  const float REAL_FINAL = (REAL_A * REAL_B) - (IMAGINARY_A * IMAGINARY_B);
+  const float IMAGINARY_FINAL = (REAL_A * IMAGINARY_B) + (REAL_B * IMAGINARY_A);
+
+  Complex c_a = Complex(REAL_A, IMAGINARY_A);
+  const Complex c_b = Complex(REAL_B, IMAGINARY_B);
+  c_a *= c_b;
+
+  float real = c_a.getReal();
+  REQUIRE(real == REAL_FINAL);
+
+  float imaginary = c_a.getImaginary();
+  REQUIRE(imaginary == IMAGINARY_FINAL);
+}
+
+TEST_CASE("Complex constant division operator", "[complex]") {
   const float REAL_A = 15.0f;
   const float IMAGINARY_A = 10.0f;
 
@@ -203,7 +243,7 @@ TEST_CASE("Complex division operator", "[complex]") {
   REQUIRE(imaginary == IMAGINARY_FINAL);
 }
 
-TEST_CASE("Complex division operator", "[complex]") {
+TEST_CASE("Complex constant division-equals operator", "[complex]") {
   const float REAL_A = 15.0f;
   const float IMAGINARY_A = 10.0f;
 
@@ -219,5 +259,30 @@ TEST_CASE("Complex division operator", "[complex]") {
   REQUIRE(real == REAL_FINAL);
 
   float imaginary = c.getImaginary();
+  REQUIRE(imaginary == IMAGINARY_FINAL);
+}
+
+TEST_CASE("Complex-complex division operator", "[complex]") {
+  const float REAL_A = 1.0f;
+  const float IMAGINARY_A = 1.0f;
+
+  const float REAL_B = 1.0f;
+  const float IMAGINARY_B = -1.0f;
+
+  const float DIVISOR = (REAL_B * REAL_B) + (IMAGINARY_B * IMAGINARY_B);
+  const float REAL_FINAL =
+      ((REAL_A * REAL_B) + (IMAGINARY_A * IMAGINARY_B)) / DIVISOR;
+  const float IMAGINARY_FINAL =
+      ((IMAGINARY_A * REAL_B) - (REAL_A * IMAGINARY_B)) / DIVISOR;
+
+  Complex c_a = Complex(REAL_A, IMAGINARY_A);
+  const Complex c_b = Complex(REAL_B, IMAGINARY_B);
+
+  c_a /= c_b;
+
+  float real = c_a.getReal();
+  REQUIRE(real == REAL_FINAL);
+
+  float imaginary = c_a.getImaginary();
   REQUIRE(imaginary == IMAGINARY_FINAL);
 }
