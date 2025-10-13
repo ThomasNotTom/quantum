@@ -24,3 +24,18 @@ TEST_CASE("Complex get with arguments to constructor", "[complex]") {
   imaginary = c.getImaginary();
   REQUIRE(imaginary == B);
 }
+
+TEST_CASE("Complex setter", "[complex]") {
+  const float A = 2.0f;
+  const float B = 3.0f;
+
+  Complex c;
+
+  c.setReal(A);
+  float real = c.getReal();
+  REQUIRE(real == A);
+
+  c.setImaginary(B);
+  float imaginary = c.getImaginary();
+  REQUIRE(imaginary == B);
+}
