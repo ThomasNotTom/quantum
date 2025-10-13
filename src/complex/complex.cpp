@@ -2,10 +2,17 @@
 
 #include <cmath>
 
+#include "../polar/polar.hpp"
+
 Complex::Complex(float real, float imaginary)
     : real(real), imaginary(imaginary) {};
 Complex::Complex(float real) : real(real), imaginary(0.0f) {};
 Complex::Complex() : real(0.0f), imaginary(0.0f) {};
+
+Complex::Complex(const Polar& polar) {
+  this->real = polar.getModulus() * sinf(polar.getArgument().getRadians());
+  this->imaginary = polar.getModulus() * cosf(polar.getArgument().getRadians());
+};
 
 float Complex::getReal() const { return this->real; };
 float Complex::getImaginary() const { return this->imaginary; };
