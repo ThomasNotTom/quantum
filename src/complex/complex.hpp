@@ -24,6 +24,9 @@ public:
   float modulusSquared() const;
   float modulus() const;
 
+  Complex normalize() const;
+  Complex normalizeInplace() const;
+
   Complex operator+(const Complex& other) const;
   void operator+=(const Complex& other);
 
