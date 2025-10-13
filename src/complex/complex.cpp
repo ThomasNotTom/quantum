@@ -46,6 +46,12 @@ Complex Complex::operator*(const Complex& other) const {
       (this->real * other.imaginary) + (this->imaginary * other.real));
 }
 
+void Complex::operator*=(const Complex& other) {
+  this->real = (this->real * other.real) - (this->imaginary * other.imaginary);
+  this->imaginary =
+      (this->real * other.imaginary) + (this->imaginary * other.real);
+}
+
 Complex Complex::operator/(float k) const {
   return Complex(this->real / k, this->imaginary / k);
 }
