@@ -13,3 +13,7 @@ Matrix::Matrix(const std::vector<std::vector<Complex>>& values)
 Complex Matrix::get(unsigned int x, unsigned int y) const {
   return this->values[y][x];
 }
+
+void Matrix::set(unsigned int x, unsigned int y, const Complex value) {
+  this->values[y][x] = value;
+};
