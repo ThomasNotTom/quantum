@@ -25,3 +25,12 @@ TEST_CASE("Matrix get with value list", "[matrix]") {
   Complex value = m.get(0, 0);
   REQUIRE(value == def);
 };
+
+TEST_CASE("Matrix set", "[matrix]") {
+  const Complex def = Complex(2.0f, 3.0f);
+
+  Matrix m = Matrix(1, 1);
+  m.set(0, 0, def);
+  Complex value = m.get(0, 0);
+  REQUIRE(value == def);
+};
