@@ -15,3 +15,13 @@ TEST_CASE("Matrix get with default value", "[matrix]") {
   Complex value = m.get(0, 0);
   REQUIRE(value == def);
 };
+
+TEST_CASE("Matrix get with value list", "[matrix]") {
+  const Complex def = Complex(2.0f, 3.0f);
+
+  std::vector<std::vector<Complex>> values = {{def}};
+
+  Matrix m = Matrix(values);
+  Complex value = m.get(0, 0);
+  REQUIRE(value == def);
+};
