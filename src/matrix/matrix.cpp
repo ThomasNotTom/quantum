@@ -114,6 +114,46 @@ void Matrix::hermitianInplace() {
   }
 };
 
+Matrix Matrix::multiply(const Matrix& other) const {
+  unsigned int width, height;
+  height = this->values.size();
+  width = this->values[0].size();
+
+  Matrix out = Matrix(width, other.values[0].size(), Complex(0.0f, 0.0f));
+
+  for (unsigned int y = 0; y < height; y++) {
+    for (unsigned int x = 0; x < width; x++) {
+      Complex sum = Complex(0.0f, 0.0f);
+      for (unsigned int i = 0; i < width; i++) {
+        sum += this->get(i, y) * other.get(x, i);
+      }
+
+      out.set(x, y, sum);
+    }
+  }
+
+  return out;
+};
+
+void Matrix::multiplyInplace(const Matrix& other) {
+  const Matrix thisTemp = *this;
+
+  unsigned int width, height;
+  height = thisTemp.values.size();
+  width = thisTemp.values[0].size();
+
+  for (unsigned int y = 0; y < height; y++) {
+    for (unsigned int x = 0; x < width; x++) {
+      Complex sum = Complex(0.0f, 0.0f);
+      for (unsigned int i = 0; i < width; i++) {
+        sum += thisTemp.get(i, y) * other.get(x, i);
+      }
+
+      this->set(x, y, sum);
+    }
+  }
+};
+
 Matrix Matrix::operator+(const Matrix& other) const {
   Matrix out = Matrix(this->values.size(), this->values[0].size());
 
