@@ -4,6 +4,8 @@
 
 #include "../src/complex/complex.hpp"
 
+// Getters, setters and adders
+
 TEST_CASE("Complex get with no arguments to constructor", "[complex]") {
   Complex c;
   float real, imaginary;
@@ -59,6 +61,8 @@ TEST_CASE("Complex adder", "[complex]") {
   float imaginary = c.getImaginary();
   REQUIRE(imaginary == FINAL_B);
 };
+
+// Addition operators
 
 TEST_CASE("Complex-complex add operator", "[complex]") {
   const float REAL_A = 2.0f;
@@ -142,6 +146,8 @@ TEST_CASE("Complex-real add-equals operator", "[complex]") {
   REQUIRE(imaginary == IMAGINARY_FINAL);
 };
 
+// Subtraction operators
+
 TEST_CASE("Complex-complex subtract operator", "[complex]") {
   const float REAL_A = 10.0f;
   const float IMAGINARY_A = 7.0f;
@@ -224,6 +230,8 @@ TEST_CASE("Complex-real subtract-equals operator", "[complex]") {
   REQUIRE(imaginary == IMAGINARY_FINAL);
 };
 
+// Muliplication operators
+
 TEST_CASE("Complex-real multiplication operator", "[complex]") {
   const float REAL_A = 2.0f;
   const float IMAGINARY_A = 3.0f;
@@ -300,6 +308,8 @@ TEST_CASE("Complex-complex multiplication-equals operator", "[complex]") {
   float imaginary = c_a.getImaginary();
   REQUIRE(imaginary == IMAGINARY_FINAL);
 };
+
+// Division operators
 
 TEST_CASE("Complex-real division operator", "[complex]") {
   const float REAL_A = 15.0f;
