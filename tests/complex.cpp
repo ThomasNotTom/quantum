@@ -62,6 +62,41 @@ TEST_CASE("Complex adder", "[complex]") {
   REQUIRE(imaginary == FINAL_B);
 };
 
+// Conjugation
+
+TEST_CASE("Complex conjugation", "[complex]") {
+  const float REAL_A = 2.0f;
+  const float IMAGINARY_A = 3.0f;
+
+  const float REAL_FINAL = REAL_A;
+  const float IMAGINARY_FINAL = IMAGINARY_A * -1;
+
+  const Complex c = Complex(REAL_A, IMAGINARY_A).conjugate();
+
+  float real = c.getReal();
+  REQUIRE(real == REAL_FINAL);
+
+  float imaginary = c.getImaginary();
+  REQUIRE(imaginary == IMAGINARY_FINAL);
+};
+
+TEST_CASE("Complex conjugation inplace", "[complex]") {
+  const float REAL_A = 2.0f;
+  const float IMAGINARY_A = 3.0f;
+
+  const float REAL_FINAL = REAL_A;
+  const float IMAGINARY_FINAL = IMAGINARY_A * -1;
+
+  Complex c = Complex(REAL_A, IMAGINARY_A);
+  c.conjugateInplace();
+
+  float real = c.getReal();
+  REQUIRE(real == REAL_FINAL);
+
+  float imaginary = c.getImaginary();
+  REQUIRE(imaginary == IMAGINARY_FINAL);
+};
+
 // Addition operators
 
 TEST_CASE("Complex-complex add operator", "[complex]") {
