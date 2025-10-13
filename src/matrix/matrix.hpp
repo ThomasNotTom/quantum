@@ -25,6 +25,9 @@ public:
   Matrix hermitian() const;
   void hermitianInplace();
 
+  Matrix multiply(const Matrix& other) const;
+  void multiplyInplace(const Matrix& other);
+
   Matrix operator+(const Matrix& other) const;
   void operator+=(const Matrix& other);
 
