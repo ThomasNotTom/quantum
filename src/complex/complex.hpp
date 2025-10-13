@@ -51,4 +51,6 @@ public:
 
   Complex operator/(float k) const;
   void operator/=(float k);
+
+  bool operator==(const Complex& other) const;
 };
