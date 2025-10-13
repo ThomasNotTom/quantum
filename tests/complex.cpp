@@ -147,3 +147,21 @@ TEST_CASE("Complex subtract-equals operator", "[complex]") {
   float imaginary = c_a.getImaginary();
   REQUIRE(imaginary == IMAGINARY_FINAL);
 }
+
+TEST_CASE("Complex multiplication operator", "[complex]") {
+  const float REAL_A = 2.0f;
+  const float IMAGINARY_A = 3.0f;
+
+  const float k = 5.0f;
+
+  const float REAL_FINAL = REAL_A * k;
+  const float IMAGINARY_FINAL = IMAGINARY_A * k;
+
+  const Complex c = Complex(REAL_A, IMAGINARY_A) * k;
+
+  float real = c.getReal();
+  REQUIRE(real == REAL_FINAL);
+
+  float imaginary = c.getImaginary();
+  REQUIRE(imaginary == IMAGINARY_FINAL);
+}
