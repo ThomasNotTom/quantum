@@ -47,9 +47,12 @@ Complex Complex::operator*(const Complex& other) const {
 }
 
 void Complex::operator*=(const Complex& other) {
-  this->real = (this->real * other.real) - (this->imaginary * other.imaginary);
+  const Complex thisTemp = *this;
+
+  this->real =
+      (thisTemp.real * other.real) - (thisTemp.imaginary * other.imaginary);
   this->imaginary =
-      (this->real * other.imaginary) + (this->imaginary * other.real);
+      (thisTemp.real * other.imaginary) + (thisTemp.imaginary * other.real);
 }
 
 Complex Complex::operator/(float k) const {
@@ -73,13 +76,15 @@ Complex Complex::operator/(const Complex& other) const {
 };
 
 void Complex::operator/=(const Complex& other) {
+  const Complex thisTemp = *this;
+
   const float divisor =
       (other.real * other.real) + (other.imaginary * other.imaginary);
 
   this->real =
-      ((this->real * other.real) + (this->imaginary * other.imaginary)) /
+      ((thisTemp.real * other.real) + (thisTemp.imaginary * other.imaginary)) /
       divisor;
   this->imaginary =
-      ((this->imaginary * other.real) - (this->real * other.imaginary)) /
+      ((thisTemp.imaginary * other.real) - (thisTemp.real * other.imaginary)) /
       divisor;
 };
