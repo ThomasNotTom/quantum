@@ -1,5 +1,7 @@
 #pragma once
 
+class Polar;
+
 class Complex {
 private:
   float real;
@@ -9,6 +11,8 @@ public:
   Complex(float real, float imaginary);
   Complex(float real);
   Complex();
+
+  Complex(const Polar& radian);
 
   float getReal() const;
   float getImaginary() const;
