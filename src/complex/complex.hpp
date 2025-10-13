@@ -4,6 +4,9 @@ private:
   float imaginary;
 
 public:
+  Complex(float real, float imaginary);
+  Complex();
+
   float getReal() const;
   float getImaginary() const;
 
