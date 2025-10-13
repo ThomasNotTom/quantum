@@ -7,6 +7,7 @@ private:
 
 public:
   Complex(float real, float imaginary);
+  Complex(float real);
   Complex();
 
   float getReal() const;
