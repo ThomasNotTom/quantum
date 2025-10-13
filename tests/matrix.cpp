@@ -102,3 +102,37 @@ TEST_CASE("Matrix transpose inplace", "[matrix]") {
 
   REQUIRE(m == FINAL);
 };
+
+// Hermitian
+
+TEST_CASE("Matrix Hermitian conjugation", "[matrix]") {
+  const Matrix m = Matrix({
+      {Complex(0.0f, 0.0f), Complex(1.0f, 1.0f)},
+      {Complex(2.0f, 2.0f), Complex(3.0f, 3.0f)}
+  });
+
+  const Matrix FINAL = Matrix({
+      {Complex(0.0f, 0.0f),  Complex(2.0f, -2.0f)},
+      {Complex(1.0f, -1.0f), Complex(3.0f, -3.0f)}
+  });
+
+  Matrix mt = m.hermitian();
+
+  REQUIRE(mt == FINAL);
+};
+
+TEST_CASE("Matrix Hermitian conjugation inplace", "[matrix]") {
+  Matrix m = Matrix({
+      {Complex(0.0f, 0.0f), Complex(1.0f, 1.0f)},
+      {Complex(2.0f, 2.0f), Complex(3.0f, 3.0f)}
+  });
+
+  const Matrix FINAL = Matrix({
+      {Complex(0.0f, 0.0f),  Complex(2.0f, -2.0f)},
+      {Complex(1.0f, -1.0f), Complex(3.0f, -3.0f)}
+  });
+
+  m.hermitianInplace();
+
+  REQUIRE(m == FINAL);
+};
