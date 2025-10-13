@@ -180,3 +180,46 @@ TEST_CASE("Matrix add-equals", "[matrix]") {
 
   REQUIRE(m_a == FINAL);
 };
+
+// Subtraction operations
+
+TEST_CASE("Matrix subtract", "[matrix]") {
+  const Matrix M_A = Matrix({
+      {Complex(4.0f, 4.0f), Complex(6.0f,  6.0f) },
+      {Complex(8.0f, 8.0f), Complex(10.0f, 10.0f)}
+  });
+
+  const Matrix M_B = Matrix({
+      {Complex(0.0f, 0.0f), Complex(1.0f, 1.0f)},
+      {Complex(2.0f, 2.0f), Complex(3.0f, 3.0f)}
+  });
+
+  const Matrix FINAL = Matrix({
+      {Complex(4.0f, 4.0f), Complex(5.0f, 5.0f)},
+      {Complex(6.0f, 6.0f), Complex(7.0f, 7.0f)}
+  });
+
+  Matrix m = M_A - M_B;
+
+  REQUIRE(m == FINAL);
+};
+TEST_CASE("Matrix subtract-equals", "[matrix]") {
+  Matrix m_a = Matrix({
+      {Complex(4.0f, 4.0f), Complex(6.0f,  6.0f) },
+      {Complex(8.0f, 8.0f), Complex(10.0f, 10.0f)}
+  });
+
+  const Matrix m_b = Matrix({
+      {Complex(0.0f, 0.0f), Complex(1.0f, 1.0f)},
+      {Complex(2.0f, 2.0f), Complex(3.0f, 3.0f)}
+  });
+
+  const Matrix FINAL = Matrix({
+      {Complex(4.0f, 4.0f), Complex(5.0f, 5.0f)},
+      {Complex(6.0f, 6.0f), Complex(7.0f, 7.0f)}
+  });
+
+  m_a -= m_b;
+
+  REQUIRE(m_a == FINAL);
+};
