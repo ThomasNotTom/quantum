@@ -144,6 +144,36 @@ void Matrix::operator+=(const Matrix& other) {
   }
 };
 
+Matrix Matrix::operator-(const Matrix& other) const {
+  Matrix out = Matrix(this->values.size(), this->values[0].size());
+
+  unsigned int width, height;
+  height = this->values.size();
+  width = this->values[0].size();
+
+  for (unsigned int y = 0; y < height; y++) {
+    for (unsigned int x = 0; x < width; x++) {
+      out.set(x, y, this->get(x, y) - other.get(x, y));
+    }
+  }
+
+  return out;
+};
+
+void Matrix::operator-=(const Matrix& other) {
+  unsigned int width, height;
+  height = this->values.size();
+  width = this->values[0].size();
+
+  Matrix out = Matrix(width, height);
+
+  for (unsigned int y = 0; y < height; y++) {
+    for (unsigned int x = 0; x < width; x++) {
+      this->set(x, y, this->get(x, y) - other.get(x, y));
+    }
+  }
+};
+
 bool Matrix::operator==(const Matrix& other) const {
   unsigned int width, height;
   height = this->values.size();
