@@ -18,6 +18,38 @@ void Matrix::set(unsigned int x, unsigned int y, const Complex value) {
   this->values[y][x] = value;
 };
 
+Matrix Matrix::conjugate() const {
+  unsigned int width, height;
+  height = this->values.size();
+  width = this->values[0].size();
+
+  Matrix out = Matrix(width, height, Complex(0.0f, 0.0f));
+
+  for (unsigned int y = 0; y < height; y++) {
+    for (unsigned int x = 0; x < width; x++) {
+      out.set(x, y, this->get(x, y).conjugate());
+    }
+  }
+
+  return out;
+};
+
+void Matrix::conjugateInplace() {
+  Matrix thisTemp = *this;
+
+  unsigned int width, height;
+  height = thisTemp.values.size();
+  width = thisTemp.values.size();
+
+  Matrix out = Matrix(width, height, Complex(0.0f, 0.0f));
+
+  for (unsigned int y = 0; y < height; y++) {
+    for (unsigned int x = 0; x < width; x++) {
+      this->set(x, y, thisTemp.get(x, y).conjugate());
+    }
+  }
+};
+
 Matrix Matrix::transpose() const {
   unsigned int width, height;
   height = this->values.size();
