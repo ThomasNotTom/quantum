@@ -39,3 +39,23 @@ TEST_CASE("Complex setter", "[complex]") {
   float imaginary = c.getImaginary();
   REQUIRE(imaginary == B);
 }
+
+TEST_CASE("Complex adder", "[complex]") {
+  const float A = 2.0f;
+  const float DELTA_A = 4.0f;
+  const float FINAL_A = A + DELTA_A;
+
+  const float B = 3.0f;
+  const float DELTA_B = 5.0f;
+  const float FINAL_B = B + DELTA_B;
+
+  Complex c = Complex(A, B);
+
+  c.addReal(DELTA_A);
+  float real = c.getReal();
+  REQUIRE(real == FINAL_A);
+
+  c.addImaginary(DELTA_B);
+  float real = c.getReal();
+  REQUIRE(real == FINAL_B);
+}
