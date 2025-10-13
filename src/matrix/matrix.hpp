@@ -13,4 +13,13 @@ public:
 
   Complex get(unsigned int x, unsigned int y) const;
   void set(unsigned int x, unsigned int y, const Complex value);
+
+  Matrix conjugate() const;
+  void conjugateInplace();
+
+  Matrix transpose() const;
+  void transposeInplace();
+
+  Matrix hermitian() const;
+  void hermitianInplace();
 };
