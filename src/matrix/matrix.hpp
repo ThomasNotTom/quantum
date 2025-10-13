@@ -22,4 +22,6 @@ public:
 
   Matrix hermitian() const;
   void hermitianInplace();
+
+  bool operator==(const Matrix& other) const;
 };
