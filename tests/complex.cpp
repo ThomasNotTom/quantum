@@ -142,7 +142,7 @@ TEST_CASE("Complex-real add-equals operator", "[complex]") {
   REQUIRE(imaginary == IMAGINARY_FINAL);
 }
 
-TEST_CASE("Complex subtract operator", "[complex]") {
+TEST_CASE("Complex-complex subtract operator", "[complex]") {
   const float REAL_A = 10.0f;
   const float IMAGINARY_A = 7.0f;
 
@@ -164,7 +164,7 @@ TEST_CASE("Complex subtract operator", "[complex]") {
   REQUIRE(imaginary == IMAGINARY_FINAL);
 }
 
-TEST_CASE("Complex subtract-equals operator", "[complex]") {
+TEST_CASE("Complex-complex subtract-equals operator", "[complex]") {
   const float REAL_A = 10.0f;
   const float IMAGINARY_A = 7.0f;
 
@@ -224,7 +224,7 @@ TEST_CASE("Complex-real subtract-equals operator", "[complex]") {
   REQUIRE(imaginary == IMAGINARY_FINAL);
 }
 
-TEST_CASE("Complex constant multiplication operator", "[complex]") {
+TEST_CASE("Complex-real multiplication operator", "[complex]") {
   const float REAL_A = 2.0f;
   const float IMAGINARY_A = 3.0f;
 
@@ -242,7 +242,7 @@ TEST_CASE("Complex constant multiplication operator", "[complex]") {
   REQUIRE(imaginary == IMAGINARY_FINAL);
 }
 
-TEST_CASE("Complex constant multiplication-equals operator", "[complex]") {
+TEST_CASE("Complex-real multiplication-equals operator", "[complex]") {
   const float REAL_A = 2.0f;
   const float IMAGINARY_A = 3.0f;
 
@@ -301,7 +301,7 @@ TEST_CASE("Complex-complex multiplication-equals operator", "[complex]") {
   REQUIRE(imaginary == IMAGINARY_FINAL);
 }
 
-TEST_CASE("Complex constant division operator", "[complex]") {
+TEST_CASE("Complex-real division operator", "[complex]") {
   const float REAL_A = 15.0f;
   const float IMAGINARY_A = 10.0f;
 
@@ -319,7 +319,7 @@ TEST_CASE("Complex constant division operator", "[complex]") {
   REQUIRE(imaginary == IMAGINARY_FINAL);
 }
 
-TEST_CASE("Complex constant division-equals operator", "[complex]") {
+TEST_CASE("Complex-real division-equals operator", "[complex]") {
   const float REAL_A = 15.0f;
   const float IMAGINARY_A = 10.0f;
 
