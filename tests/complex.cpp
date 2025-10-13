@@ -60,7 +60,7 @@ TEST_CASE("Complex adder", "[complex]") {
   REQUIRE(imaginary == FINAL_B);
 }
 
-TEST_CASE("Complex add operator", "[complex]") {
+TEST_CASE("Complex-complex add operator", "[complex]") {
   const float REAL_A = 2.0f;
   const float IMAGINARY_A = 3.0f;
 
@@ -82,7 +82,7 @@ TEST_CASE("Complex add operator", "[complex]") {
   REQUIRE(imaginary == IMAGINARY_FINAL);
 }
 
-TEST_CASE("Complex add-equals operator", "[complex]") {
+TEST_CASE("Complex-complex add-equals operator", "[complex]") {
   const float REAL_A = 2.0f;
   const float IMAGINARY_A = 3.0f;
 
@@ -101,6 +101,44 @@ TEST_CASE("Complex add-equals operator", "[complex]") {
   REQUIRE(real == REAL_FINAL);
 
   float imaginary = c_a.getImaginary();
+  REQUIRE(imaginary == IMAGINARY_FINAL);
+}
+
+TEST_CASE("Complex-real add operator", "[complex]") {
+  const float REAL_A = 2.0f;
+  const float IMAGINARY_A = 3.0f;
+
+  const float K = 5.0f;
+
+  const float REAL_FINAL = REAL_A + K;
+  const float IMAGINARY_FINAL = IMAGINARY_A;
+
+  const Complex c = Complex(REAL_A, IMAGINARY_A) + K;
+
+  float real = c.getReal();
+  REQUIRE(real == REAL_FINAL);
+
+  float imaginary = c.getImaginary();
+  REQUIRE(imaginary == IMAGINARY_FINAL);
+}
+
+TEST_CASE("Complex-real add-equals operator", "[complex]") {
+  const float REAL_A = 2.0f;
+  const float IMAGINARY_A = 3.0f;
+
+  const float K = 5.0f;
+
+  const float REAL_FINAL = REAL_A + K;
+  const float IMAGINARY_FINAL = IMAGINARY_A;
+
+  Complex c = Complex(REAL_A, IMAGINARY_A);
+
+  c += K;
+
+  float real = c.getReal();
+  REQUIRE(real == REAL_FINAL);
+
+  float imaginary = c.getImaginary();
   REQUIRE(imaginary == IMAGINARY_FINAL);
 }
 
