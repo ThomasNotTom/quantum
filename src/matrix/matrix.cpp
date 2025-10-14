@@ -55,7 +55,7 @@ Matrix Matrix::transpose() const {
   height = this->values.size();
   width = this->values[0].size();
 
-  Matrix out = Matrix(width, height, Complex(0.0f, 0.0f));
+  Matrix out = Matrix(height, width, Complex(0.0f, 0.0f));
 
   for (unsigned int y = 0; y < height; y++) {
     for (unsigned int x = 0; x < width; x++) {
@@ -73,8 +73,7 @@ void Matrix::transposeInplace() {
   height = thisTemp.values.size();
   width = thisTemp.values[0].size();
 
-  Matrix out = Matrix(width, height, Complex(0.0f, 0.0f));
-
+  values.assign(width, std::vector<Complex>(height));
   for (unsigned int y = 0; y < height; y++) {
     for (unsigned int x = 0; x < width; x++) {
       this->set(y, x, thisTemp.get(x, y));
