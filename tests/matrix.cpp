@@ -71,7 +71,7 @@ TEST_CASE("Matrix conjugate inplace", "[matrix]") {
 
 // Transpose
 
-TEST_CASE("Matrix transpose", "[matrix]") {
+TEST_CASE("Matrix transpose square", "[matrix]") {
   const Matrix m = Matrix({
       {Complex(0.0f, 0.0f), Complex(1.0f, 1.0f)},
       {Complex(2.0f, 2.0f), Complex(3.0f, 3.0f)}
@@ -87,7 +87,19 @@ TEST_CASE("Matrix transpose", "[matrix]") {
   REQUIRE(mt == FINAL);
 };
 
-TEST_CASE("Matrix transpose inplace", "[matrix]") {
+TEST_CASE("Matrix transpose non-square", "[matrix]") {
+  const Matrix m = Matrix({
+      {Complex(0.0f, 0.0f), Complex(1.0f, 1.0f)},
+  });
+
+  const Matrix FINAL = Matrix({{Complex(0.0f, 0.0f)}, {Complex(1.0f, 1.0f)}});
+
+  Matrix mt = m.transpose();
+
+  REQUIRE(mt == FINAL);
+};
+
+TEST_CASE("Matrix transpose inplace square", "[matrix]") {
   Matrix m = Matrix({
       {Complex(0.0f, 0.0f), Complex(1.0f, 1.0f)},
       {Complex(2.0f, 2.0f), Complex(3.0f, 3.0f)}
@@ -97,6 +109,18 @@ TEST_CASE("Matrix transpose inplace", "[matrix]") {
       {Complex(0.0f, 0.0f), Complex(2.0f, 2.0f)},
       {Complex(1.0f, 1.0f), Complex(3.0f, 3.0f)}
   });
+
+  m.transposeInplace();
+
+  REQUIRE(m == FINAL);
+};
+
+TEST_CASE("Matrix transpose inplace non-square", "[matrix]") {
+  Matrix m = Matrix({
+      {Complex(0.0f, 0.0f), Complex(1.0f, 1.0f)},
+  });
+
+  const Matrix FINAL = Matrix({{Complex(0.0f, 0.0f)}, {Complex(1.0f, 1.0f)}});
 
   m.transposeInplace();
 
