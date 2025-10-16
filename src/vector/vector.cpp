@@ -63,3 +63,21 @@ void Vector::operator/=(const Complex& k) {
     this->set(i, thisCopy.get(i) / k);
   }
 };
+
+bool Vector::operator==(const Vector& other) const {
+  for (unsigned int i = 0; i < this->getRank(); i++) {
+    if (this->get(i) != other.get(i)) {
+      return false;
+    }
+  }
+  return true;
+};
+
+bool Vector::operator!=(const Vector& other) const {
+  for (unsigned int i = 0; i < this->getRank(); i++) {
+    if (this->get(i) == other.get(i)) {
+      return true;
+    }
+  }
+  return false;
+};
