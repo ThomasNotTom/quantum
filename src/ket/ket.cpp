@@ -17,7 +17,7 @@ Ket Ket::multiply(const Matrix& other) const {
   for (unsigned int y = 0; y < other.getHeight(); y++) {
     Complex sum = Complex(0.0f, 0.0f);
     for (unsigned int x = 0; x < other.getWidth(); x++) {
-      sum += this->get(y) * other.get(x, y);
+      sum += this->get(x) * other.get(x, y);
     }
     out.set(y, sum);
   }
@@ -31,7 +31,7 @@ void Ket::multiplyInplace(const Matrix& other) {
   for (unsigned int y = 0; y < other.getHeight(); y++) {
     Complex sum = Complex(0.0f, 0.0f);
     for (unsigned int x = 0; x < other.getWidth(); x++) {
-      sum += thisTemp.get(y) * other.get(x, y);
+      sum += thisTemp.get(x) * other.get(x, y);
     }
     this->set(y, sum);
   }
@@ -46,4 +46,58 @@ Matrix Ket::outer(const Bra& other) const {
   }
 
   return out;
+};
+
+Ket Ket::operator+(const Ket& other) const {
+  Ket out = Ket(this->getSize());
+
+  for (unsigned int y = 0; y < this->getSize(); y++) {
+    out.set(y, this->get(y) + other.get(y));
+  }
+
+  return out;
+}
+
+void Ket::operator+=(const Ket& other) {
+  const Ket thisTemp = *this;
+
+  for (unsigned int y = 0; y < this->getSize(); y++) {
+    this->set(y, thisTemp.get(y) + other.get(y));
+  }
+}
+
+Ket Ket::operator-(const Ket& other) const {
+  Ket out = Ket(this->getSize());
+
+  for (unsigned int y = 0; y < this->getSize(); y++) {
+    out.set(y, this->get(y) - other.get(y));
+  }
+
+  return out;
+}
+
+void Ket::operator-=(const Ket& other) {
+  const Ket thisTemp = *this;
+
+  for (unsigned int y = 0; y < this->getSize(); y++) {
+    this->set(y, thisTemp.get(y) - other.get(y));
+  }
+}
+
+bool Ket::operator==(const Ket& other) const {
+  for (unsigned int i = 0; i < this->getSize(); i++) {
+    if (this->get(i) != other.get(i)) {
+      return false;
+    }
+  }
+  return true;
+};
+
+bool Ket::operator!=(const Ket& other) const {
+  for (unsigned int i = 0; i < this->getSize(); i++) {
+    if (this->get(i) == other.get(i)) {
+      return true;
+    }
+  }
+  return false;
 };
