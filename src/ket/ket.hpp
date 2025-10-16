@@ -16,4 +16,13 @@ public:
   void multiplyInplace(const Matrix& other);
 
   Matrix outer(const Bra& other) const;
+
+  Ket operator+(const Ket& other) const;
+  void operator+=(const Ket& other);
+
+  Ket operator-(const Ket& other) const;
+  void operator-=(const Ket& other);
+
+  bool operator==(const Ket& other) const;
+  bool operator!=(const Ket& other) const;
 };
