@@ -6,7 +6,7 @@ class Bra {
   Complex get(unsigned int y) const;
   void set(unsigned int y, const Complex value);
 
-  Complex inner(const Bra& other) const;
+  Complex inner(const Ket& other) const;
 
   Bra multiply(const Matrix& other) const;
   void multiplyInplace(const Matrix& other);
