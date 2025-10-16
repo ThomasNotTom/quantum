@@ -15,5 +15,5 @@ public:
   Ket multiply(const Matrix& other) const;
   void multiplyInplace(const Matrix& other);
 
-  Operator outer(const Bra& other) const;
+  Matrix outer(const Bra& other) const;
 };
