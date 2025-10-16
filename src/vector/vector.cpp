@@ -1,8 +1,8 @@
 #include "./vector.hpp"
 
 Vector Vector::conjugate() const {
-  Vector out = Vector(this->getRank());
-  for (unsigned int i = 0; i < this->getRank(); i++) {
+  Vector out = Vector(this->getSize());
+  for (unsigned int i = 0; i < this->getSize(); i++) {
     out.set(i, this->get(i).conjugate());
   }
 
@@ -12,14 +12,14 @@ Vector Vector::conjugate() const {
 Vector Vector::conjugate() const {
   const Vector thisTemp = *this;
 
-  for (unsigned int i = 0; i < this->getRank(); i++) {
+  for (unsigned int i = 0; i < this->getSize(); i++) {
     this->set(i, thisTemp.get(i).conjugate());
   }
 };
 
 Vector Vector::operator+(const Vector& other) const {
-  Vector out = Vector(this->getRank());
-  for (unsigned int i = 0; i < this->getRank(); i++) {
+  Vector out = Vector(this->getSize());
+  for (unsigned int i = 0; i < this->getSize(); i++) {
     out.set(i, this->get(i) + other.get(i));
   }
   return out;
@@ -28,14 +28,14 @@ Vector Vector::operator+(const Vector& other) const {
 void Vector::operator+=(const Vector& other) {
   const Vector thisCopy = *this;
 
-  for (unsigned int i = 0; i < this->getRank(); i++) {
+  for (unsigned int i = 0; i < this->getSize(); i++) {
     this->set(i, thisCopy.get(i) + other.get(i));
   }
 };
 
 Vector Vector::operator-(const Vector& other) const {
-  Vector out = Vector(this->getRank());
-  for (unsigned int i = 0; i < this->getRank(); i++) {
+  Vector out = Vector(this->getSize());
+  for (unsigned int i = 0; i < this->getSize(); i++) {
     out.set(i, this->get(i) - other.get(i));
   }
   return out;
@@ -44,14 +44,14 @@ Vector Vector::operator-(const Vector& other) const {
 void Vector::operator-=(const Vector& other) {
   const Vector thisCopy = *this;
 
-  for (unsigned int i = 0; i < this->getRank(); i++) {
+  for (unsigned int i = 0; i < this->getSize(); i++) {
     this->set(i, thisCopy.get(i) - other.get(i));
   }
 };
 
 Vector Vector::operator*(const Complex& k) const {
-  Vector out = Vector(this->getRank());
-  for (unsigned int i = 0; i < this->getRank(); i++) {
+  Vector out = Vector(this->getSize());
+  for (unsigned int i = 0; i < this->getSize(); i++) {
     out.set(i, this->get(i) * k);
   }
   return out;
@@ -60,14 +60,14 @@ Vector Vector::operator*(const Complex& k) const {
 void Vector::operator*=(const Complex& k) {
   const Vector thisCopy = *this;
 
-  for (unsigned int i = 0; i < this->getRank(); i++) {
+  for (unsigned int i = 0; i < this->getSize(); i++) {
     this->set(i, thisCopy.get(i) * k);
   }
 };
 
 Vector Vector::operator/(const Complex& k) const {
-  Vector out = Vector(this->getRank());
-  for (unsigned int i = 0; i < this->getRank(); i++) {
+  Vector out = Vector(this->getSize());
+  for (unsigned int i = 0; i < this->getSize(); i++) {
     out.set(i, this->get(i) / k);
   }
   return out;
@@ -76,13 +76,13 @@ Vector Vector::operator/(const Complex& k) const {
 void Vector::operator/=(const Complex& k) {
   const Vector thisCopy = *this;
 
-  for (unsigned int i = 0; i < this->getRank(); i++) {
+  for (unsigned int i = 0; i < this->getSize(); i++) {
     this->set(i, thisCopy.get(i) / k);
   }
 };
 
 bool Vector::operator==(const Vector& other) const {
-  for (unsigned int i = 0; i < this->getRank(); i++) {
+  for (unsigned int i = 0; i < this->getSize(); i++) {
     if (this->get(i) != other.get(i)) {
       return false;
     }
@@ -91,7 +91,7 @@ bool Vector::operator==(const Vector& other) const {
 };
 
 bool Vector::operator!=(const Vector& other) const {
-  for (unsigned int i = 0; i < this->getRank(); i++) {
+  for (unsigned int i = 0; i < this->getSize(); i++) {
     if (this->get(i) == other.get(i)) {
       return true;
     }
