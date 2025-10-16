@@ -9,6 +9,8 @@ class Vector : public Tensor<Complex> {
 public:
   using Tensor<Complex>::Tensor;
 
+  Vector(unsigned int height);
+
   Vector conjugate() const;
   void conjugateInplace();
 
