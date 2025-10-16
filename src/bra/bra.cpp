@@ -5,6 +5,8 @@
 #include "../matrix/matrix.hpp"
 #include "../vector/vector.hpp"
 
+Bra::Bra(const Vector& vector) : Bra(vector.getValues()) {};
+
 Complex Bra::inner(const Ket& other) const {
   Complex total = Complex(0.0f, 0.0f);
 
