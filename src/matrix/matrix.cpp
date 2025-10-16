@@ -1,5 +1,31 @@
 #include "./matrix.hpp"
 
+Matrix::Matrix(unsigned int width, unsigned int height)
+    : Vector(width * height), width(width), height(height) {};
+
+Matrix::Matrix(unsigned int width, unsigned int height,
+               const Complex initialValue)
+    : Vector(width * height, initialValue), width(width), height(height) {};
+
+Matrix::Matrix(const std::vector<std::vector<Complex>>& values)
+    : height(values.size()), width(values.size()) {
+  for (unsigned int y = 0; y < values.size(); y++) {
+    std::vector<Complex> inner = values[y];
+    this->values.insert(this->values.end(), inner.begin(), inner.end());
+  }
+};
+
+unsigned int Matrix::getWidth() const { return this->width; }
+unsigned int Matrix::getHeight() const { return this->height; }
+
+Complex Matrix::get(unsigned int x, unsigned int y) const {
+  return this->values[(this->height * y) + x];
+};
+
+void Matrix::set(unsigned int x, unsigned int y, Complex value) {
+  this->values[(this->height * y) + x] = value;
+};
+
 Matrix Matrix::conjugate() const {
   Matrix out = Matrix(this->width, this->height, Complex(0.0f, 0.0f));
 
@@ -106,4 +132,66 @@ void Matrix::multiplyInplace(const Matrix& other) {
       this->set(x, y, sum);
     }
   }
+};
+
+Matrix Matrix::operator+(const Matrix& other) const {
+  Matrix out = Matrix(this->getWidth(), this->getHeight());
+
+  for (unsigned int y = 0; y < this->getHeight(); y++) {
+    for (unsigned int x = 0; x < this->getWidth(); x++) {
+      out.set(x, y, this->get(x, y) + other.get(x, y));
+    }
+  }
+
+  return out;
+}
+
+void Matrix::operator+=(const Matrix& other) {
+  const Matrix thisTemp = *this;
+
+  for (unsigned int y = 0; y < this->getHeight(); y++) {
+    for (unsigned int x = 0; x < this->getWidth(); x++) {
+      this->set(x, y, thisTemp.get(x, y) + other.get(x, y));
+    }
+  }
+}
+
+Matrix Matrix::operator-(const Matrix& other) const {
+  Matrix out = Matrix(this->getWidth(), this->getHeight());
+
+  for (unsigned int y = 0; y < this->getHeight(); y++) {
+    for (unsigned int x = 0; x < this->getWidth(); x++) {
+      out.set(x, y, this->get(x, y) - other.get(x, y));
+    }
+  }
+
+  return out;
+}
+
+void Matrix::operator-=(const Matrix& other) {
+  const Matrix thisTemp = *this;
+
+  for (unsigned int y = 0; y < this->getHeight(); y++) {
+    for (unsigned int x = 0; x < this->getWidth(); x++) {
+      this->set(x, y, thisTemp.get(x, y) - other.get(x, y));
+    }
+  }
+}
+
+bool Matrix::operator==(const Matrix& other) const {
+  for (unsigned int y = 0; y < this->getHeight(); y++) {
+    for (unsigned int x = 0; x < this->getWidth(); x++) {
+      return false;
+    }
+  }
+  return true;
+};
+
+bool Matrix::operator!=(const Matrix& other) const {
+  for (unsigned int y = 0; y < this->getHeight(); y++) {
+    for (unsigned int x = 0; x < this->getWidth(); x++) {
+      return true;
+    }
+  }
+  return false;
 };
