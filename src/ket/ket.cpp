@@ -1,12 +1,36 @@
 #include "./ket.hpp"
 
-Ket::Ket(unsigned int height) : Ket(height, Complex(0.0f, 0.0f)) {};
+#include "../bra/bra.hpp"
+#include "../matrix/matrix.hpp"
 
-Ket::Ket(unsigned int height, const Complex initialValue)
-    : values(height, initialValue) {};
+Bra Ket::transpose() const { return Bra(this->values); };
+Bra Ket::hermitian() const {
+  Bra out = this->transpose();
+  return out.conjugate();
+};
 
-Ket::Ket(const std::vector<Complex>& values) : values(values) {};
+Ket Ket::multiply(const Matrix& other) const {
+  Ket out = Ket(this->getSize(), Complex(0.0f, 0.0f));
 
-Complex Ket::get(unsigned int y) const { return this->values[y]; };
+  for (unsigned int y = 0; y < other.getHeight(); y++) {
+    Complex sum = Complex(0.0f, 0.0f);
+    for (unsigned int x = 0; x < other.getWidth(); x++) {
+      sum += this->get(y) * other.get(x, y);
+    }
+    out.set(y, sum);
+  }
 
-void Ket::set(unsigned int y, const Complex value) { this->values[y] = value; };
+  return out;
+};
+
+void Ket::multiplyInplace(const Matrix& other) {
+  const Ket thisTemp = *this;
+
+  for (unsigned int y = 0; y < other.getHeight(); y++) {
+    Complex sum = Complex(0.0f, 0.0f);
+    for (unsigned int x = 0; x < other.getWidth(); x++) {
+      sum += thisTemp.get(y) * other.get(x, y);
+    }
+    this->set(y, sum);
+  }
+};
