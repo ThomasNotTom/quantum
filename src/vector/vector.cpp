@@ -1,5 +1,22 @@
 #include "./vector.hpp"
 
+Vector Vector::conjugate() const {
+  Vector out = Vector(this->getRank());
+  for (unsigned int i = 0; i < this->getRank(); i++) {
+    out.set(i, this->get(i).conjugate());
+  }
+
+  return out;
+};
+
+Vector Vector::conjugate() const {
+  const Vector thisTemp = *this;
+
+  for (unsigned int i = 0; i < this->getRank(); i++) {
+    this->set(i, thisTemp.get(i).conjugate());
+  }
+};
+
 Vector Vector::operator+(const Vector& other) const {
   Vector out = Vector(this->getRank());
   for (unsigned int i = 0; i < this->getRank(); i++) {
