@@ -14,18 +14,9 @@ public:
   Vector conjugate() const;
   void conjugateInplace();
 
-  Vector operator+(const Vector& other) const;
-  void operator+=(const Vector& other);
-
-  Vector operator-(const Vector& other) const;
-  void operator-=(const Vector& other);
-
   Vector operator*(const Complex& k) const;
   void operator*=(const Complex& k);
 
   Vector operator/(const Complex& k) const;
   void operator/=(const Complex& k);
-
-  bool operator==(const Vector& other) const;
-  bool operator!=(const Vector& other) const;
 };
