@@ -1,29 +1,7 @@
 #include "./matrix.hpp"
 
-Matrix::Matrix(unsigned int width, unsigned int height)
-    : Matrix(width, height, Complex(0.0f, 0.0f)) {};
-
-Matrix::Matrix(unsigned int width, unsigned int height,
-               const Complex initialValue)
-    : values(height, std::vector<Complex>(width, initialValue)) {};
-
-Matrix::Matrix(const std::vector<std::vector<Complex>>& values)
-    : values(values) {};
-
-Complex Matrix::get(unsigned int x, unsigned int y) const {
-  return this->values[y][x];
-}
-
-void Matrix::set(unsigned int x, unsigned int y, const Complex value) {
-  this->values[y][x] = value;
-};
-
 Matrix Matrix::conjugate() const {
-  unsigned int width, height;
-  height = this->values.size();
-  width = this->values[0].size();
-
-  Matrix out = Matrix(width, height, Complex(0.0f, 0.0f));
+  Matrix out = Matrix(this->width, this->height, Complex(0.0f, 0.0f));
 
   for (unsigned int y = 0; y < height; y++) {
     for (unsigned int x = 0; x < width; x++) {
@@ -51,11 +29,7 @@ void Matrix::conjugateInplace() {
 };
 
 Matrix Matrix::transpose() const {
-  unsigned int width, height;
-  height = this->values.size();
-  width = this->values[0].size();
-
-  Matrix out = Matrix(height, width, Complex(0.0f, 0.0f));
+  Matrix out = Matrix(this->height, this->width, Complex(0.0f, 0.0f));
 
   for (unsigned int y = 0; y < height; y++) {
     for (unsigned int x = 0; x < width; x++) {
@@ -69,24 +43,17 @@ Matrix Matrix::transpose() const {
 void Matrix::transposeInplace() {
   Matrix thisTemp = *this;
 
-  unsigned int width, height;
-  height = thisTemp.values.size();
-  width = thisTemp.values[0].size();
+  values.assign(this->width * this->height, Complex(0.0f, 0.0f));
 
-  values.assign(width, std::vector<Complex>(height));
-  for (unsigned int y = 0; y < height; y++) {
-    for (unsigned int x = 0; x < width; x++) {
+  for (unsigned int y = 0; y < this->height; y++) {
+    for (unsigned int x = 0; x < this->width; x++) {
       this->set(y, x, thisTemp.get(x, y));
     }
   }
 }
 
 Matrix Matrix::hermitian() const {
-  unsigned int width, height;
-  height = this->values.size();
-  width = this->values[0].size();
-
-  Matrix out = Matrix(height, width, Complex(0.0f, 0.0f));
+  Matrix out = Matrix(this->height, this->width, Complex(0.0f, 0.0f));
 
   for (unsigned int y = 0; y < height; y++) {
     for (unsigned int x = 0; x < width; x++) {
@@ -100,11 +67,8 @@ Matrix Matrix::hermitian() const {
 void Matrix::hermitianInplace() {
   Matrix thisTemp = *this;
 
-  unsigned int width, height;
-  height = thisTemp.values.size();
-  width = thisTemp.values[0].size();
+  values.assign(this->width * this->height, Complex(0.0f, 0.0f));
 
-  values.assign(width, std::vector<Complex>(height));
   for (unsigned int y = 0; y < height; y++) {
     for (unsigned int x = 0; x < width; x++) {
       this->set(y, x, thisTemp.get(x, y).conjugate());
@@ -113,11 +77,7 @@ void Matrix::hermitianInplace() {
 };
 
 Matrix Matrix::multiply(const Matrix& other) const {
-  unsigned int width, height;
-  height = this->values.size();
-  width = this->values[0].size();
-
-  Matrix out = Matrix(width, other.values[0].size(), Complex(0.0f, 0.0f));
+  Matrix out = Matrix(this->width, this->height, Complex(0.0f, 0.0f));
 
   for (unsigned int y = 0; y < height; y++) {
     for (unsigned int x = 0; x < width; x++) {
@@ -136,12 +96,8 @@ Matrix Matrix::multiply(const Matrix& other) const {
 void Matrix::multiplyInplace(const Matrix& other) {
   const Matrix thisTemp = *this;
 
-  unsigned int width, height;
-  height = thisTemp.values.size();
-  width = thisTemp.values[0].size();
-
-  for (unsigned int y = 0; y < height; y++) {
-    for (unsigned int x = 0; x < width; x++) {
+  for (unsigned int y = 0; y < this->height; y++) {
+    for (unsigned int x = 0; x < this->width; x++) {
       Complex sum = Complex(0.0f, 0.0f);
       for (unsigned int i = 0; i < width; i++) {
         sum += thisTemp.get(i, y) * other.get(x, i);
@@ -151,95 +107,3 @@ void Matrix::multiplyInplace(const Matrix& other) {
     }
   }
 };
-
-Matrix Matrix::operator+(const Matrix& other) const {
-  Matrix out = Matrix(this->values.size(), this->values[0].size());
-
-  unsigned int width, height;
-  height = this->values.size();
-  width = this->values[0].size();
-
-  for (unsigned int y = 0; y < height; y++) {
-    for (unsigned int x = 0; x < width; x++) {
-      out.set(x, y, this->get(x, y) + other.get(x, y));
-    }
-  }
-
-  return out;
-};
-
-void Matrix::operator+=(const Matrix& other) {
-  unsigned int width, height;
-  height = this->values.size();
-  width = this->values[0].size();
-
-  Matrix out = Matrix(width, height);
-
-  for (unsigned int y = 0; y < height; y++) {
-    for (unsigned int x = 0; x < width; x++) {
-      this->set(x, y, this->get(x, y) + other.get(x, y));
-    }
-  }
-};
-
-Matrix Matrix::operator-(const Matrix& other) const {
-  Matrix out = Matrix(this->values.size(), this->values[0].size());
-
-  unsigned int width, height;
-  height = this->values.size();
-  width = this->values[0].size();
-
-  for (unsigned int y = 0; y < height; y++) {
-    for (unsigned int x = 0; x < width; x++) {
-      out.set(x, y, this->get(x, y) - other.get(x, y));
-    }
-  }
-
-  return out;
-};
-
-void Matrix::operator-=(const Matrix& other) {
-  unsigned int width, height;
-  height = this->values.size();
-  width = this->values[0].size();
-
-  Matrix out = Matrix(width, height);
-
-  for (unsigned int y = 0; y < height; y++) {
-    for (unsigned int x = 0; x < width; x++) {
-      this->set(x, y, this->get(x, y) - other.get(x, y));
-    }
-  }
-};
-
-bool Matrix::operator==(const Matrix& other) const {
-  unsigned int width, height;
-  height = this->values.size();
-  width = this->values[0].size();
-
-  for (unsigned int y = 0; y < height; y++) {
-    for (unsigned int x = 0; x < width; x++) {
-      if (this->get(x, y) != other.get(x, y)) {
-        return false;
-      }
-    }
-  }
-
-  return true;
-}
-
-bool Matrix::operator!=(const Matrix& other) const {
-  unsigned int width, height;
-  height = this->values.size();
-  width = this->values[0].size();
-
-  for (unsigned int y = 0; y < height; y++) {
-    for (unsigned int x = 0; x < width; x++) {
-      if (this->get(x, y) != other.get(x, y)) {
-        return true;
-      }
-    }
-  }
-
-  return false;
-}
