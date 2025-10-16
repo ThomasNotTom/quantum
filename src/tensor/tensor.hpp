@@ -13,5 +13,5 @@ public:
   T& get(unsigned int i);
   void set(unsigned int i, T value) const;
 
-  unsigned int getRank() const;
+  unsigned int getSize() const;
 };
