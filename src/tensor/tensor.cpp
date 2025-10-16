@@ -1,7 +1,7 @@
 #include "./tensor.hpp"
 
 template <typename T>
-Tensor<T>::Tensor(unsigned int height, const T initialValue)
+Tensor<T>::Tensor(unsigned int size, const T initialValue)
     : values(height, initialValue){};
 
 template <typename T>
