@@ -1,5 +1,7 @@
 #include "./vector.hpp"
 
+Vector::Vector(unsigned int height) : Vector(height, Complex()) {};
+
 Vector Vector::conjugate() const {
   Vector out = Vector(this->getSize());
   for (unsigned int i = 0; i < this->getSize(); i++) {
