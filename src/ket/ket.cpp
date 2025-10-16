@@ -3,6 +3,8 @@
 #include "../bra/bra.hpp"
 #include "../matrix/matrix.hpp"
 
+Ket::Ket(const Vector& vector) : Ket(vector.getValues()) {};
+
 Bra Ket::transpose() const { return Bra(this->values); };
 Bra Ket::hermitian() const {
   Bra out = this->transpose();
@@ -33,4 +35,15 @@ void Ket::multiplyInplace(const Matrix& other) {
     }
     this->set(y, sum);
   }
+};
+
+Matrix Ket::outer(const Bra& other) const {
+  Matrix out = Matrix(other.getSize(), this->getSize());
+  for (unsigned int y = 0; y < this->getSize(); y++) {
+    for (unsigned int x = 0; x < other.getSize(); x++) {
+      out.set(x, y, this->get(y) * other.get(x));
+    }
+  }
+
+  return out;
 };
