@@ -1,4 +1,4 @@
-#include "../vector/vector.hpp
+#include "../vector/vector.hpp"
 
 class Ket;
 
@@ -12,4 +12,13 @@ public:
 
   Ket transpose() const;
   Ket hermitian() const;
+
+  Bra operator+(const Bra& other) const;
+  void operator+=(const Bra& other);
+
+  Bra operator-(const Bra& other) const;
+  void operator-=(const Bra& other);
+
+  bool operator==(const Bra& other) const;
+  bool operator!=(const Bra& other) const;
 };
