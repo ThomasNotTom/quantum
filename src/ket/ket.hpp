@@ -7,6 +7,8 @@ class Ket : public Vector {
 public:
   using Vector::Vector;
 
+  Ket(const Vector& vector);
+
   Bra transpose() const;
   Bra hermitian() const;
 
