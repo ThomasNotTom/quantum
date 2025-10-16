@@ -5,7 +5,6 @@ protected:
   std::vector<T> values;
 
 public:
-  Tensor(unsigned int height);
   Tensor(unsigned int height, const T initialValue);
   Tensor(const std::vector<T>& values);
 
