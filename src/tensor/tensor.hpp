@@ -13,5 +13,7 @@ public:
   T& get(unsigned int i);
   void set(unsigned int i, T value) const;
 
+  const std::vector<T>& getValues() const;
+
   unsigned int getSize() const;
 };
