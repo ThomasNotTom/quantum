@@ -12,7 +12,7 @@ private:
 public:
   Matrix(unsigned int width, unsigned int height);
   Matrix(unsigned int width, unsigned int height, const Complex initialValue);
-  Matrix(const std::vector<Complex>& values);
+  Matrix(const std::vector<std::vector<Complex>>& values);
 
   unsigned int getWidth() const;
   unsigned int getHeight() const;
@@ -31,4 +31,13 @@ public:
 
   Matrix multiply(const Matrix& other) const;
   void multiplyInplace(const Matrix& other);
+
+  Matrix operator+(const Matrix& other) const;
+  void operator+=(const Matrix& other);
+
+  Matrix operator-(const Matrix& other) const;
+  void operator-=(const Matrix& other);
+
+  bool operator==(const Matrix& other) const;
+  bool operator!=(const Matrix& other) const;
 };
