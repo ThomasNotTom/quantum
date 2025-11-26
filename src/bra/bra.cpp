@@ -23,6 +23,20 @@ Ket Bra::hermitian() const {
   return out.conjugate();
 };
 
+std::string Bra::toString() const {
+  std::string out = "[ ";
+  for (size_t i = 0; i < this->values.size(); i++) {
+    out += this->values[i].toString();
+    if (i < this->values.size() - 1) {
+      out += "   ";
+    }
+  }
+
+  out += " ]";
+
+  return out;
+};
+
 Bra Bra::operator+(const Bra& other) const {
   Bra out = Bra(this->getSize());
 

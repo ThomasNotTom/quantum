@@ -1,6 +1,9 @@
 #include "./complex.hpp"
 
 #include <cmath>
+#include <iomanip>
+#include <sstream>
+#include <string>
 
 #include "../polar/polar.hpp"
 
@@ -44,6 +47,21 @@ void Complex::normalizeInplace() {
   this->real /= mod;
   this->imaginary /= mod;
 };
+
+std::string Complex::toString() const {
+  std::ostringstream outStream;
+  outStream << std::fixed << std::setprecision(2) << this->real << " ";
+  if (this->imaginary > 0) {
+    outStream << "+ ";
+  } else {
+    outStream << "- ";
+  }
+
+  outStream << std::fixed << std::setprecision(2) << abs(this->imaginary)
+            << "i";
+
+  return outStream.str();
+}
 
 Complex Complex::operator+(const Complex& other) const {
   return Complex(this->real + other.real, this->imaginary + other.imaginary);

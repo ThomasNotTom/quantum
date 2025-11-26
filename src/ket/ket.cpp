@@ -48,6 +48,20 @@ Matrix Ket::outer(const Bra& other) const {
   return out;
 };
 
+std::string Ket::toString() const {
+  std::string out = "|";
+  for (size_t i = 0; i < this->values.size(); i++) {
+    out += this->values[i].toString();
+    if (i < this->values.size() - 1) {
+      out += "   ";
+    }
+  }
+
+  out += " ]";
+
+  return out;
+};
+
 Ket Ket::operator+(const Ket& other) const {
   Ket out = Ket(this->getSize());
 
