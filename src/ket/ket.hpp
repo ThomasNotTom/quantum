@@ -17,6 +17,8 @@ public:
 
   Matrix outer(const Bra& other) const;
 
+  std::string toString() const;
+
   Ket operator+(const Ket& other) const;
   void operator+=(const Ket& other);
 

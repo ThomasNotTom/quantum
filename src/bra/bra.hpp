@@ -13,6 +13,8 @@ public:
   Ket transpose() const;
   Ket hermitian() const;
 
+  std::string toString() const;
+
   Bra operator+(const Bra& other) const;
   void operator+=(const Bra& other);
 
