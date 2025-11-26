@@ -12,7 +12,7 @@ public:
   Complex(float real);
   Complex();
 
-  Complex(const Polar& radian);
+  Complex(const Polar& polar);
 
   float getReal() const;
   float getImaginary() const;
@@ -31,6 +31,8 @@ public:
 
   Complex normalize() const;
   void normalizeInplace();
+
+  std::string toString() const;
 
   Complex operator+(const Complex& other) const;
   void operator+=(const Complex& other);
