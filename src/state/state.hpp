@@ -14,4 +14,6 @@ public:
 
   void normaliseInplace();
   State normalise() const;
+
+  float getProbability(size_t baseIndex) const;
 };
