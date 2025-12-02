@@ -9,4 +9,6 @@ private:
 
 public:
   State(size_t basisCount);
+
+  void setBasisCoef(Complex coef, size_t baseIndex);
 };
