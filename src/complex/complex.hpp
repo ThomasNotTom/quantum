@@ -8,6 +8,7 @@ class Complex {
 private:
   float real;
   float imaginary;
+  static std::string floatToString(float n);
 
 public:
   Complex(float real, float imaginary);
