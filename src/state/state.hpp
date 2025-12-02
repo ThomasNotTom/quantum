@@ -20,4 +20,6 @@ public:
 
   float getProbability(size_t baseIndex) const;
   size_t measure();
+
+  std::string toString() const;
 };
