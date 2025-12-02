@@ -8,3 +8,7 @@ State::State(size_t basisCount) {
     bases.push_back(BasisCoefficient(basis, Complex(0, 0)));
   };
 }
+
+void State::setBasisCoef(Complex coef, size_t baseIndex) {
+  this->bases[baseIndex].coefficient = coef;
+};
