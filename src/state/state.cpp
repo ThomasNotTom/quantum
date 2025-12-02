@@ -1,5 +1,8 @@
 #include "./state.hpp"
 
+#include <iomanip>
+#include <sstream>
+
 std::mt19937 State::rng = std::mt19937(std::random_device{}());
 
 State::State(size_t basisCount) {
@@ -67,4 +70,57 @@ size_t State::measure() {
   }
 
   return state;
+};
+
+std::string State::toString() const {
+  std::string out = "";
+  for (size_t i = 0; i < this->bases.size(); i++) {
+    float real, imag;
+    real = this->bases[i].coefficient.getReal();
+    imag = this->bases[i].coefficient.getImaginary();
+
+    if (imag == 0) {
+      if (real < 0) {
+        out += "-";
+        if (i != 0) {
+          out += " ";
+        }
+        if (remainderf(real, 1) == 0) {
+          out += std::to_string(static_cast<int>(abs(real)));
+        } else {
+          std::ostringstream o;
+          o << std::fixed << std::setprecision(2) << abs(real);
+          out += o.str();
+        }
+
+      } else if (this->bases[i].coefficient.getReal() >= 0) {
+        if (i != 0) {
+          out += "+ ";
+        }
+        if (this->bases[i].coefficient.getReal() == 0) {
+          out += "0";
+        } else {
+          if (remainderf(real, 1) == 0) {
+            out += std::to_string(static_cast<int>(real));
+          } else {
+            std::ostringstream o;
+            o << std::fixed << std::setprecision(2) << real;
+            out += o.str();
+          }
+        }
+      }
+    } else {
+      if (i != 0) {
+        out += "+ ";
+      }
+      out += "(";
+      out += this->bases[i].coefficient.toString();
+      out += ")";
+    }
+    out += "|";
+    out += std::to_string(i);
+    out += "〉";
+  }
+
+  return out;
 };
