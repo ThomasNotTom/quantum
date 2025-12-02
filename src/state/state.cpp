@@ -44,3 +44,7 @@ State State::normalise() const {
 
   return newState;
 };
+
+float State::getProbability(size_t baseIndex) const {
+  return this->bases[baseIndex].coefficient.modulusSquared();
+};
