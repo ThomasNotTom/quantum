@@ -7,6 +7,16 @@
 
 #include "../polar/polar.hpp"
 
+std::string Complex::floatToString(float x) {
+  if (remainderf(x, 1) == 0) {
+    return std::to_string(static_cast<int>(x));
+  }
+
+  std::ostringstream o;
+  o << std::fixed << std::setprecision(2) << x;
+  return o.str();
+};
+
 Complex::Complex(float real, float imaginary)
     : real(real), imaginary(imaginary) {};
 Complex::Complex(float real) : real(real), imaginary(0.0f) {};
@@ -50,15 +60,30 @@ void Complex::normalizeInplace() {
 
 std::string Complex::toString() const {
   std::ostringstream outStream;
-  outStream << std::fixed << std::setprecision(2) << this->real << " ";
-  if (this->imaginary > 0) {
-    outStream << "+ ";
-  } else {
-    outStream << "- ";
-  }
 
-  outStream << std::fixed << std::setprecision(2) << abs(this->imaginary)
-            << "i";
+  if (this->real == 0 && this->imaginary == 0) {
+    outStream << "0" << std::endl;
+  } else {
+    if (this->real == 0) {
+      if (this->imaginary < 0) {
+        outStream << "-";
+      }
+      outStream << Complex::floatToString(abs(this->imaginary));
+      outStream << "i";
+    } else if (this->imaginary == 0) {
+      outStream << Complex::floatToString(this->real);
+    } else {
+      outStream << Complex::floatToString(this->real);
+      if (this->imaginary > 0) {
+        outStream << " + ";
+      } else {
+        outStream << " - ";
+      }
+
+      outStream << Complex::floatToString(abs(this->imaginary));
+      outStream << "i";
+    }
+  }
 
   return outStream.str();
 }
