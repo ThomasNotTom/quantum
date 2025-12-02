@@ -1,10 +1,13 @@
 #pragma once
 
+#include <random>
+
 #include "../vector/vector.hpp"
 #include "./basis_coef.hpp"
 
 class State {
 private:
+  static std::mt19937 rng;
   std::vector<BasisCoefficient> bases;
 
 public:
