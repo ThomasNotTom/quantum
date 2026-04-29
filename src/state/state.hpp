@@ -2,7 +2,6 @@
 
 #include <random>
 
-#include "../vector/vector.hpp"
 #include "./basis_coef.hpp"
 
 class State {
