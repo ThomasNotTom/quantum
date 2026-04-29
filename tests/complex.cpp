@@ -2,8 +2,6 @@
 
 #include "../src/complex/complex.hpp"
 
-#include <cstdint>
-
 // Getters, setters and adders
 
 const float ERROR_THRESHOLD = 0.001;
