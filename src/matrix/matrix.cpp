@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "./matrix.hpp"
 
 Matrix::Matrix() : Vector(0), width(0), height(0) {};
@@ -11,7 +9,7 @@ Matrix::Matrix(unsigned int width, unsigned int height,
                const Complex initialValue)
     : Vector(width * height, initialValue), width(width), height(height) {};
 
-Matrix::Matrix(const std::vector<std::vector<Complex>>& values)
+Matrix::Matrix(const std::vector<std::vector<Complex>> &values)
     : height(values.size()), width(values[0].size()) {
   for (unsigned int y = 0; y < values.size(); y++) {
     std::vector<Complex> inner = values[y];
@@ -107,7 +105,7 @@ void Matrix::hermitianInplace() {
   }
 };
 
-Matrix Matrix::multiply(const Matrix& other) const {
+Matrix Matrix::multiply(const Matrix &other) const {
   Matrix out = Matrix(this->height, other.width, Complex(0.0f, 0.0f));
 
   for (unsigned int y = 0; y < this->height; y++) {
@@ -123,7 +121,7 @@ Matrix Matrix::multiply(const Matrix& other) const {
   return out;
 };
 
-void Matrix::multiplyInplace(const Matrix& other) {
+void Matrix::multiplyInplace(const Matrix &other) {
   const Matrix thisTemp = *this;
 
   this->values.assign(this->height * other.width, Complex(0, 0));
@@ -160,7 +158,7 @@ std::string Matrix::toString() const {
   return out;
 };
 
-Matrix Matrix::operator+(const Matrix& other) const {
+Matrix Matrix::operator+(const Matrix &other) const {
   Matrix out = Matrix(this->getWidth(), this->getHeight());
 
   for (unsigned int y = 0; y < this->getHeight(); y++) {
@@ -172,7 +170,7 @@ Matrix Matrix::operator+(const Matrix& other) const {
   return out;
 }
 
-void Matrix::operator+=(const Matrix& other) {
+void Matrix::operator+=(const Matrix &other) {
   const Matrix thisTemp = *this;
 
   for (unsigned int y = 0; y < this->getHeight(); y++) {
@@ -182,7 +180,7 @@ void Matrix::operator+=(const Matrix& other) {
   }
 }
 
-Matrix Matrix::operator-(const Matrix& other) const {
+Matrix Matrix::operator-(const Matrix &other) const {
   Matrix out = Matrix(this->getWidth(), this->getHeight());
 
   for (unsigned int y = 0; y < this->getHeight(); y++) {
@@ -194,7 +192,7 @@ Matrix Matrix::operator-(const Matrix& other) const {
   return out;
 }
 
-void Matrix::operator-=(const Matrix& other) {
+void Matrix::operator-=(const Matrix &other) {
   const Matrix thisTemp = *this;
 
   for (unsigned int y = 0; y < this->getHeight(); y++) {
@@ -204,7 +202,7 @@ void Matrix::operator-=(const Matrix& other) {
   }
 }
 
-bool Matrix::operator==(const Matrix& other) const {
+bool Matrix::operator==(const Matrix &other) const {
   for (unsigned int y = 0; y < this->getHeight(); y++) {
     for (unsigned int x = 0; x < this->getWidth(); x++) {
       if (this->get(x, y) != other.get(x, y)) {
@@ -215,7 +213,7 @@ bool Matrix::operator==(const Matrix& other) const {
   return true;
 };
 
-bool Matrix::operator!=(const Matrix& other) const {
+bool Matrix::operator!=(const Matrix &other) const {
   for (unsigned int y = 0; y < this->getHeight(); y++) {
     for (unsigned int x = 0; x < this->getWidth(); x++) {
       if (this->get(x, y) != other.get(x, y)) {
